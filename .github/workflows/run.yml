@@ -1,0 +1,30 @@
+name: Run TG Bot
+on:
+  push:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Write script from secret
+        run: |
+          echo "${{ secrets.TG_BOT_SCRIPT }}" > bot.py
+
+      - name: Install dependencies
+        run: |
+          pip install telethon aiohttp -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+      - name: Run bot
+        run: python bot.py
