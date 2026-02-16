@@ -14,9 +14,8 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install telethon
-        run: pip install telethon -i https://pypi.tuna.tsinghua.edu.cn/simple
-
+      - name: Install
+        run: pip install telethon aiohttp
       - name: Decode script from base64
         run: echo "${{ secrets.TG_BOT_BASE64 }}" | base64 -d > bot.py
 
