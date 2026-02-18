@@ -15,7 +15,7 @@ jobs:
       - name: Install
         run: pip install telethon aiohttp
       - name: Decode script from base64
-        run: echo "${{ secrets.TG_BOT_BASE64 }}" | base64 -d > bot.py
+        run: echo "${{ secrets.TG_BOT_BASE64tz }}" | base64 -d > bot.py
 
       - name: Run
         run: python bot.py
